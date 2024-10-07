@@ -45,10 +45,10 @@ class FormActivity : AppCompatActivity() {
             submitBtn.setOnClickListener(){
                 if(fieldNotEmpty()){
                     val intentToAppointment = Intent(this@FormActivity, AppointmentActivity::class.java)
-                    intentToAppointment.putExtra(EXTRA_NAMA, namaEdt.text.toString())
-                    intentToAppointment.putExtra(EXTRA_IDENTITAS, identitasEdt.text.toString())
-                    intentToAppointment.putExtra(EXTRA_GENDER, genderInput)
-                    intentToAppointment.putExtra(EXTRA_KELUHAN, keluhanEdt.text.toString())
+                    intentToAppointment.putExtra("EXTRA_NAMA", namaEdt.text.toString())
+                    intentToAppointment.putExtra("EXTRA_IDENTITAS", identitasEdt.text.toString())
+                    intentToAppointment.putExtra("EXTRA_GENDER", genderInput)
+                    intentToAppointment.putExtra("EXTRA_KELUHAN", keluhanEdt.text.toString())
                     //
                 }else{
                     Toast.makeText(this@FormActivity, "MASIH ADA KOLOM YANG KOSONG", Toast.LENGTH_SHORT).show()

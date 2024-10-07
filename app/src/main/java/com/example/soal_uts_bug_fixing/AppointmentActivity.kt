@@ -49,17 +49,17 @@ class AppointmentActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListe
 
         with(binding){
 
-            tombolKalender.setOnClickListener {
+            kalenderTxt.setOnClickListener {
                 val datePicker = DatePicker()
                 datePicker.show(supportFragmentManager, "datePicker")
             }
 
-            tombolJam.setOnClickListener {
+            timerTxt.setOnClickListener {
                 val timePicker = TimePicker()
                 timePicker.show(supportFragmentManager, "timePicker")
             }
 
-            tombolSubmit.setOnClickListener {
+            submitBtn.setOnClickListener {
                 if(fieldNotEmpty()){
                     val dialog = DialogExit()
                     //
@@ -96,27 +96,27 @@ class AppointmentActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListe
     }
 
     override fun onTimeSet(p0: android.widget.TimePicker?, hour: Int, menit:Int) {
-        timeInput = String.format("%02d:%02d", hour, minute)
+        timeInput = String.format("%02d:%02d", hour, menit)
         binding.timerTxt.text = timeInput
     }
 
 
 //  AKSI SETELAH KONFIRMASI DIALOG BOX
     override fun onDialogResult(result: Boolean) {
-        val nama = intent.getStringExtra(FormActivity.EXTRA_NAMA)
-        val identitas = intent.getStringExtra(FormActivity.EXTRA_IDENTITAS)
-        val gender = intent.getStringExtra(FormActivity.EXTRA_GENDER)
+        val nama = intent.getStringExtra("EXTRA_NAMA")
+        val identitas = intent.getStringExtra("EXTRA_IDENTITAS")
+        val gender = intent.getStringExtra("EXTRA_GENDER")
 
             if (result) {
                 val intentToResult = Intent(this@AppointmentActivity, ResultActivity::class.java)
-                intentToResult.putExtra(EXTRA_TELEFON, binding.kontakEdt.text.toString())
-                intentToResult.putExtra(EXTRA_TANGGAL, binding.kalenderTxt.text.toString())
-                (EXTRA_WAKTU, binding.timerTxt.text.toString())
+                intentToResult.putExtra("EXTRA_TELEFON", binding.kontakEdt.text.toString())
+                intentToResult.putExtra("EXTRA_TANGGAL", binding.kalenderTxt.text.toString())
+                (EXTRA_WAKTU, binding.timerTxt.toString())
                 (EXTRA_TIPE, tipePertemuan)
 
-                intentToResult.putExtra(FormActivity.EXTRA_NAMA, nama)
-                intentToResult.putExtra(FormActivity.EXTRA_IDENTITAS, identitas)
-                intentToResult.putExtra(FormActivity.EXTRA_GENDER, gender)
+                intentToResult.putExtra("EXTRA_NAMA", nama)
+                intentToResult.putExtra("EXTRA_IDENTITAS", identitas)
+                intentToResult.putExtra("EXTRA_GENDER", gender)
 
                 if(tipePertemuan=="Offline"){
                     intentToResult.putExtra(EXTRA_ALAMAT, binding.lokasiEdt.text.toString())
